@@ -1,0 +1,202 @@
+Cloning the repo locally
+
+Clone via SSH
+git clone git@github.com:Alistair-Lee/ArmHackathon46.git
+
+If this fails run: $ ls -al ~/.ssh
+Look for file called rsa.pub:
+total 20
+drwx------  2 liabar01 liabar01 4096 Jun 22 12:37 .
+drwxr-xr-x 86 liabar01 liabar01 4096 Jul 21 16:18 ..
+-rw-------  1 liabar01 liabar01 2602 Apr 28 14:42 id_rsa
+-rw-r--r--  1 liabar01 liabar01  570 Apr 28 14:42 id_rsa.pub <---This one!
+-rw-r--r--  1 liabar01 liabar01 1670 Jun 30 15:18 known_hosts
+
+Find that file, open in text-editor and copy the contents - including the 'ssh-rsa' prefix
+Go to github and sign-in. Click on your profile in the top-right corner and click settings.
+Scroll to SSH/GPG keys
+Find field to add new SSH key and paste in the contents of the rsa.pub file.
+
+Try to clone via SSH again
+$ git clone git@github.com:Alistair-Lee/ArmHackathon46.git
+
+$ cd ArmHackathon46 
+$ git branch # tells you what branch you are on as well as listing other branches in the repo
+
+After cloning you should see that you have 'checked out' the branch 'main'.
+When you clone there are three notable copies of the repo:
+Copy 1.The actual shared master-copy hosted on Github
+Copy 2.A snapshot of what the master-copy looked like AT THE TIME YOU CLONED which is stored on your local machine but not edited
+Copy 3. Another snapshot of the master-copy stored on your machine but this one is your 'sandbox' to edit and make changes
+
+git pull is extremely important; to demonstrate let's say two of us go through the git cloning process and make edits then try
+to push them. 
+
+If I push first, the following happens.
+I change my Copy 3 and make a commit - Git compares my Copy 3 (local sandbox) to my Copy 2 (local master-copy snapshot)
+and associates the differences between them to the commit.
+
+When I push, it compares my Copy 2 to Copy 3 (online master copy)
+If they are not-identical you won't be allowed to push!
+
+So think about the three copies on e.g. Alistairs machine. 
+When we cloned and started working on the project his 3 copies are the same as mine.
+When he makes changes and commits them it works because he is adding his commit to Copy 2 on his machine.
+But if he goes to push, his Copy 2 (local snapshot of master-copy) is not the same as Copy 3 because my changes
+are already there. 
+So in order to push he needs to do a git pull.
+
+This can get quite messy when people accumulate commits so what is commonly done is create extra branches.
+
+git checkout -b experimental/liam_feature_branch 
+This creates a new branch named experimental/liam_feature_branch AND checks it out.
+When you check it out it mirrors the state of the branch you ran the command from - i.e. 'main'
+
+$ git branch
+
+You should see you are now on this new branch.
+By default this branch has only Copy 2 & 3; meaning there is no remote master-copy (Copy 3)
+You can safely make commits/pushes on this branch without interfering/worrying about conflicts with the master branch
+for each small commit. When you are happy that you have a working feature you can 'squash' all the commits on 
+your experimental branch into one large commit and push just that commit to main.
+
+At any point you can create a remote mastercopy of your new branch with the following:
+git push --set-upstream origin experimental/liam_feature_branch
+You will now see it on the repo and others can checkout your branch directly.
+
+To be continued, hope that helps!
+
+Main takeaway - use git pull frequently to check if there have been changes to the master-copy
+Experimental branches save a lot of headaches when working with multiple people
+Always check what branch you are on before a push!
+
+YOu can swap branches quickly using:
+$ git switch main 
+$ git switch experimental/feature_branch 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+If I push first then copy number 1 - the master-copy on github has changed.
+
+
+git pull #
+
+
+git checkout -b experimental/liam_feature_branch
+git branch
+git pull
+
+ 2005  git push --set-upstream origin experimental/liam_feature_branch
+ 2006  history
+
